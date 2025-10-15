@@ -1,0 +1,40 @@
+{
+  "name": "metaflow-dev",
+  "displayName": "Run and Spin Metaflow",
+  "version": "0.0.7",
+  "publisher": "local",
+  "engines": { "vscode": "^1.80.0" },
+  "activationEvents": [
+    "onCommand:extension.runPythonFunction",
+    "onCommand:extension.spinPythonFunction"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/outerbounds/metaflow-dev-vscode"
+  },
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.runPythonFunction",
+        "title": "Run a flow"
+      },
+      {
+        "command": "extension.spinPythonFunction",
+        "title": "Spin the current step"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.runPythonFunction",
+        "key": "ctrl+alt+r",
+        "when": "editorLangId == python"
+      },
+      {
+        "command": "extension.spinPythonFunction",
+        "key": "ctrl+alt+s",
+        "when": "editorLangId == python"
+      }
+    ]
+  }
+}

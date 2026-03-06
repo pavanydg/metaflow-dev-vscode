@@ -6,7 +6,8 @@
   "engines": { "vscode": "^1.80.0" },
   "activationEvents": [
     "onCommand:extension.runPythonFunction",
-    "onCommand:extension.spinPythonFunction"
+    "onCommand:extension.spinPythonFunction", 
+    "onLanguage:python"
   ],
   "repository": {
     "type": "git",

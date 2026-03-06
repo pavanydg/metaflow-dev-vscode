@@ -1,5 +1,6 @@
 const vscode = require('vscode');
 const path = require('path');
+const { metaflowHoverProvider, loadDecoratorMap } = require('./metaflowHoverProvider');
 
 let sharedTerminal = null;
 
@@ -56,7 +57,7 @@ async function runPythonCommand(scriptName) {
   */
 }
 
-function activate(context) {
+async function activate(context) {
   const runCmd = vscode.commands.registerCommand(
     'extension.runPythonFunction',
     () => runPythonCommand('run_func')
@@ -68,6 +69,16 @@ function activate(context) {
   );
 
   context.subscriptions.push(runCmd, spinCmd);
+  
+  // Hover provider
+  const hoverDisposable = vscode.languages.registerHoverProvider(
+    { scheme: 'file', language: 'python' },
+    metaflowHoverProvider
+  );
+  context.subscriptions.push(hoverDisposable);
+  
+  await loadDecoratorMap(context);
+
 }
 
 function deactivate() {
